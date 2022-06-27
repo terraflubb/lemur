@@ -464,6 +464,8 @@ def create(**kwargs):
         dest_accounts = {}
         for dest in kwargs["destinations"]:
             account = get_plugin_option("accountNumber", dest.options)
+            if account is None:
+                continue
             if account in dest_accounts:
                 raise Exception(f"Only one destination allowed per account: {account}")
             dest_accounts[account] = True
